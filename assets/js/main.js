@@ -36,6 +36,96 @@
 
 ****************************************************/
 
+document.addEventListener('DOMContentLoaded', function () {
+
+  const modal = document.getElementById('videoModal');
+  const iframe = document.getElementById('youtubeVideo');
+  const closeBtn = document.getElementById('closeVideo');
+
+  // Apna YouTube video
+  const videoURL = "https://www.youtube.com/embed/sWl0Xb2zyag?autoplay=1&rel=0&modestbranding=1";
+
+  // Video Open karne ka function
+  function openVideo(e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    iframe.src = videoURL;
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  // Video Close karne ka function
+  function closeVideo() {
+    modal.style.display = 'none';
+    iframe.src = '';               // video band + sound band
+    document.body.style.overflow = '';
+  }
+
+  // Play icon + image dono pe click
+  document.querySelectorAll('.video-play-btn, .video-trigger').forEach(function (btn) {
+    btn.addEventListener('click', openVideo);
+  });
+
+  // Cross button
+  closeBtn.addEventListener('click', closeVideo);
+
+  // Bahar black area pe click karne se bhi band
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal) {
+      closeVideo();
+    }
+  });
+
+  // ESC key se band
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      closeVideo();
+    }
+  });
+
+});
+
+let miniCurrentSlide = 0;
+const miniSlides = document.querySelectorAll(".mini-slide");
+const miniDots = document.querySelectorAll(".mini-dot");
+
+function showMiniSlide(index) {
+
+  miniSlides.forEach(slide => {
+    slide.classList.remove("active");
+  });
+
+  miniDots.forEach(dot => {
+    dot.classList.remove("active");
+  });
+
+  miniCurrentSlide = index;
+
+  miniSlides[miniCurrentSlide].classList.add("active");
+  miniDots[miniCurrentSlide].classList.add("active");
+}
+
+function changeMiniSlide(direction) {
+
+  miniCurrentSlide += direction;
+
+  if (miniCurrentSlide >= miniSlides.length) {
+    miniCurrentSlide = 0;
+  }
+
+  if (miniCurrentSlide < 0) {
+    miniCurrentSlide = miniSlides.length - 1;
+  }
+
+  showMiniSlide(miniCurrentSlide);
+}
+
+
+/* AUTO SLIDER */
+setInterval(() => {
+  changeMiniSlide(1);
+}, 3500);
 (function ($) {
   "use strict";
 
@@ -261,22 +351,24 @@
     }
   });
 
-  // Side Info Js
-  $(".side-info-close,.offcanvas-overlay").on("click", function () {
-    $(".side-info").removeClass("info-open");
-    $(".offcanvas-overlay").removeClass("overlay-open");
-  });
-  $(".side-toggle").on("click", function () {
-    $(".side-info").addClass("info-open");
-    $(".offcanvas-overlay").addClass("overlay-open");
-  });
+$(".side-info-close, .offcanvas-overlay").on("click", function () {
+  $(".side-info").removeClass("info-open");
+  $(".offcanvas-overlay").removeClass("overlay-open");
+  $("body").removeClass("side-info-open");
+});
 
-  $(window).scroll(function () {
-    if ($("body").scrollTop() > 0 || $("html").scrollTop() > 0) {
-      $(".side-info").removeClass("info-open");
-      $(".offcanvas-overlay").removeClass("overlay-open");
-    }
-  });
+$(".side-toggle").on("click", function () {
+  $(".side-info").addClass("info-open");
+  $(".offcanvas-overlay").addClass("overlay-open");
+  $("body").addClass("side-info-open");
+});
+
+  // $(window).scroll(function () {
+  //   if ($("body").scrollTop() > 0 || $("html").scrollTop() > 0) {
+  //     $(".side-info").removeClass("info-open");
+  //     $(".offcanvas-overlay").removeClass("overlay-open");
+  //   }
+  // });
 
   // meanmenu activation 
   $('.main-menu').meanmenu({
