@@ -4154,7 +4154,7 @@ section {
 .main-menu ul.dp-menu {
   background-color: #4b22ddba;
   padding: 18px 0px;
-  width: 250px;
+  width: 240px;
   position: absolute;
   inset-inline-start: 10px;
   opacity: 0;
@@ -4171,7 +4171,7 @@ section {
 .main-menu ul.dp-menu ul {
   background: #4b22ddba;
   padding: 18px 0px;
-  width: 300px;
+  width: 220px;
   position: absolute;
   inset-inline-start: calc(100% + 10px);
   top: 0;
@@ -4179,9 +4179,13 @@ section {
   z-index: 10;
   transition: all 0.5s;
 }
+#dp-menu{
+  width: 200px;
+}
 .main-menu ul.dp-menu li {
   position: relative;
-  padding: 0 25px;
+  padding: 0 3px;
+  padding-left: 10px;
 }
 .main-menu ul.dp-menu li:hover > a {
   color: var(--white);
@@ -4989,10 +4993,10 @@ section {
 }
 .header-area .header-logo {
   margin-right: auto;
-  margin-left: -40px;
+  margin-left: -50px;
 }
 .header-area .header-logo img {
-  width: 330px;
+  width: 340px;
 }
 @media only screen and (max-width: 1354px) {
   .header-area .header-logo {
@@ -8059,7 +8063,7 @@ section {
   position: relative;
 }
 .about-2-thumb-wrapper .main-img {
-  margin-left: 75px;
+  /* margin-left: 75px; */
   border-radius: 9px;
   overflow: hidden;
 }
@@ -16068,7 +16072,7 @@ section {
   line-height: 50px;
   display: block;
   font-size: 16px;
-  color: var(--black);
+  /* color: var(--black); */
 }
 .contact-formfield .nice-select .option {
   height: 40px;
@@ -20665,7 +20669,7 @@ section {
     overflow: hidden;
     position: relative;
     width: 100%;
-    height: 290px;
+    height: 180px;
 }
 
 .project-item-3 .project-img {
@@ -25443,7 +25447,7 @@ section {
 .tk-body-wrapper {
       min-height: 100vh;
       background: #f8f7fc; /* clean light background */
-      font-family: 'Segoe UI', system-ui, sans-serif;
+   
       padding: 40px 20px;
       display: flex;
       justify-content: center;
@@ -25663,8 +25667,8 @@ section {
 .panel-body {
   padding: 12px !important;
   background: #fff;
-  overflow-x: auto;          /* horizontal scroll only when needed */
-  -webkit-overflow-scrolling: touch;
+
+  /* -webkit-overflow-scrolling: touch; */
 }
 
 /* ========== TABLE ========== */
@@ -25815,9 +25819,7 @@ table.dataTable tbody tr:hover {
 
 /* Tablet & up – keep nice spacing */
 @media (min-width: 768px) {
-  .panel-body {
-    padding: 18px !important;
-  }
+
 
   table.dataTable thead th,
   .tbl-house-colours thead th {
@@ -26353,14 +26355,14 @@ table.dataTable tbody tr:hover {
 
 
 
-.admission-form {
+/* .admission-form {
             width: 100%;
             max-width: 950px;
             margin: auto;
             border: 1px solid #1683ff;
             padding: 0 20px 25px;
             background: #fff;
-        }
+        } */
 
         .form-row {
             display: grid;
@@ -26369,9 +26371,7 @@ table.dataTable tbody tr:hover {
             margin-bottom: 10px;
         }
 
-        .form-group {
-            margin-bottom: 10px;
-        }
+      
 
         label {
             display: block;
@@ -26396,7 +26396,7 @@ table.dataTable tbody tr:hover {
             width: 100%;
             border: 1px solid #5b9cff;
             border-radius: 3px;
-            padding: 7px 10px;
+            padding: 17px 10px;
             font-size: 12px;
             color: #555;
             outline: none;
@@ -27589,4 +27589,7 @@ body.video-modal-open {
 
     font-size: 14px;
     cursor: pointer;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button{
+  color: white;
 }
