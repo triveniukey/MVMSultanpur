@@ -28,7 +28,7 @@ table.dataTable tr.dt-hasChild td.dt-control:before {
 }
 
 html.dark table.dataTable td.dt-control:before {
-    color: rgba(255, 255, 255, 0.5)
+    color: rgb(255, 255, 255)
 }
 
 html.dark table.dataTable tr.dt-hasChild td.dt-control:before {
