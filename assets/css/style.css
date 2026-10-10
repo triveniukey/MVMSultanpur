@@ -3380,7 +3380,7 @@ section {
 .rr-btn:hover .btn-wrap .text-two, .rr-btn:focus .btn-wrap .text-two {
   top: 50%;
   transform: translateY(-50%);
-  color: var(--black);
+  color: #5f11dc;
 }
 .dark .rr-btn:hover .btn-wrap .text-two, .dark .rr-btn:focus .btn-wrap .text-two {
   color: var(--white);
@@ -4218,7 +4218,7 @@ section {
 .main-menu li.menu-item-has-children > a:after {
   content: "\f107";
   font-family: var(--font_awesome);
-  margin-inline-start: 7px;
+  margin-inline-start: 2px;
   font-weight: 700;
   font-size: 16px;
 }
@@ -4967,14 +4967,14 @@ section {
   height: 100%;
   width: max-content;
   top: 0;
-  right: calc(100% - 330px);
+  right: calc(100% - 370px);
   z-index: -1;
 }
-@media only screen and (max-width: 767px) {
+/* @media only screen and (max-width: 767px) {
   .header-area .header-main-bg {
     right: calc(100% - 200px);
   }
-}
+} */
 .header-area .header-main-bg img {
   height: 100%;
 }
@@ -4993,28 +4993,24 @@ section {
 }
 .header-area .header-logo {
   margin-right: auto;
-  margin-left: -50px;
+  margin-left: -10px;
 }
 .header-area .header-logo img {
   width: 340px;
 }
-@media only screen and (max-width: 1354px) {
-  .header-area .header-logo {
-   margin-left: 0px;
-   width: 290px;
-  }
-}
+
+
 /* @media only screen and (max-width: 1199px) {
   .header-area .header-logo img {
     width: 157px;
   }
 } */
-@media only screen and (max-width: 767px) {
+/* @media only screen and (max-width: 767px) {
   .header-area .header-logo img {
     width: 227px;
-    margin-left: -30px;
+    margin-left: -0px;
   }
-}
+} */
 /* .header-area .header-nav {
   margin-right: 25px;
 } */
@@ -5029,7 +5025,7 @@ section {
 .header-area .main-menu li a {
   font-size: 16px;
   font-weight: 600;
-  padding: 7px 14px;
+  padding: 7px 11px;
   background-color: transparent;
   border-radius: 30px;
 }
@@ -6050,6 +6046,88 @@ section {
   border-radius: 12px;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ========== Mobile Header Fix ========== */
+@media only screen and (max-width: 991px) {
+
+  /* Purple curve shape ko hide / adjust kar do */
+  .header-area .header-main-bg {
+    right: calc(100% - 180px) !important;   /* pehle try yeh */
+    /* Agar still problem ho to neeche wali line use karo */
+    /* display: none !important; */
+  }
+
+  /* Header height thodi kam karo */
+  .header-area .header-main-inner {
+    height: 70px !important;
+  }
+
+  /* Logo size adjust */
+  .header-area .header-logo img {
+    width: 160px !important;
+    max-width: 160px !important;
+  }
+
+  /* Menu items ko thoda compact karo (agar abhi bhi dikh rahe hain) */
+  .header-area .main-menu > ul {
+    gap: 6px !important;
+  }
+
+  .header-area .main-menu li a {
+    font-size: 13px !important;
+    padding: 6px 8px !important;
+  }
+}
+
+/* Extra small phones ke liye */
+@media only screen and (max-width: 575px) {
+  .header-area .header-main-bg {
+    display: none !important;   /* bilkul hide kar do */
+  }
+
+  .header-area .header-main-inner {
+    height: 65px !important;
+    padding: 0 10px;
+  }
+
+  .header-area .header-logo img {
+    width: 140px !important;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* footer css */
 /* footer area style  */
 .footer-area {
@@ -6408,12 +6486,41 @@ section {
   gap: 5px 30px;
   flex-wrap: wrap;
 }
+
+/* Small Laptop: 768px - 1017px */
+@media only screen and (min-width: 768px) and (max-width: 1017px) {
+    .copyright-link {
+        margin-left: -120px;
+    }
+}
+
+/* Laptop: 1018px - 1200px */
+@media only screen and (min-width: 1018px) and (max-width: 1200px) {
+    .copyright-link {
+        margin-left: -120px;
+    }
+}
+
+/* Desktop: 1201px - 1450px */
+@media only screen and (min-width: 1201px) and (max-width: 1450px) {
+    .copyright-link {
+        margin-left: -120px;
+    }
+}
+
+/* Large Screens: 1451px and above */
+@media only screen and (min-width: 1451px) {
+    .copyright-link {
+        margin-left: 0;
+    }
+}
 .copyright-link a {
   font-weight: 500;
   font-size: 16px;
   line-height: 26px;
   color: var(--white);
   display: inline-block;
+  /* margin-left: -80px; */
 }
 .copyright-link a:hover {
   color: var(--white-2);
@@ -8669,7 +8776,7 @@ section {
   padding: 16px 33px;
 }
 .service-2-box .rr-btn .text-one {
-  color: var(--black);
+  color: #5f11dc;
 }
 
 /* service-3 area style  */
@@ -15530,16 +15637,9 @@ section {
     margin-top: 80px;
   }
 }
-@media only screen and (max-width: 1199px) {
-  .brands-4-wrapper-box {
-    margin-top: 60px;
-    margin-left: 0;
-    grid-template-columns: 100%;
-  }
-}
 
 .brands-4-wrapper {
-  padding: 53px 43px 39px;
+  padding: 75px 43px 39px;
   background-color: var(--white);
   position: relative;
   border-radius: 100px 0 0 0;
@@ -25270,7 +25370,7 @@ section {
   height: 100%;
   display: block;
 
-  object-fit: cover;
+  /* object-fit: cover; */
 }
 
 
@@ -25300,7 +25400,7 @@ section {
 .mini-slide img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  /* object-fit: cover; */
 }
 
 
@@ -25398,7 +25498,7 @@ section {
   }
 
   .mini-ad-card {
-    height: 105px;
+    height: 125px;
   }
 
   .mini-ad-card:last-child {
@@ -25419,9 +25519,9 @@ section {
     gap: 12px;
   }
 
-  .mini-ad-card {
-    height: 95px;
-  }
+  /* .mini-ad-card {
+    height: 110px;
+  } */
 
   .mini-ad-card:last-child {
     grid-column: auto;
@@ -27593,3 +27693,7 @@ body.video-modal-open {
 .dataTables_wrapper .dataTables_paginate .paginate_button{
   color: white;
 }
+
+
+
+
