@@ -35,6 +35,15 @@
 
 
 ****************************************************/
+window.addEventListener('resize', function() {
+  document.body.style.height = 'auto';
+});
+
+// Page load pe bhi
+document.addEventListener('DOMContentLoaded', function() {
+  document.body.style.height = 'auto';
+});
+
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -45,39 +54,46 @@ document.addEventListener('DOMContentLoaded', function () {
   // Apna YouTube video
   const videoURL = "https://www.youtube.com/embed/sWl0Xb2zyag?autoplay=1&rel=0&modestbranding=1";
 
-  // Video Open karne ka function
+  // Video Open function
   function openVideo(e) {
     e.preventDefault();
     e.stopPropagation();
 
     iframe.src = videoURL;
     modal.style.display = 'flex';
+
+    // Layout shift fix
+    const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
     document.body.style.overflow = 'hidden';
+    document.body.style.paddingRight = scrollBarWidth + 'px';
   }
 
-  // Video Close karne ka function
+  // Video Close function
   function closeVideo() {
     modal.style.display = 'none';
-    iframe.src = '';               // video band + sound band
+    iframe.src = '';
+
+    // Layout shift fix remove
     document.body.style.overflow = '';
+    document.body.style.paddingRight = '';
   }
 
-  // Play icon + image dono pe click
+  // Play button / image pe click
   document.querySelectorAll('.video-play-btn, .video-trigger').forEach(function (btn) {
     btn.addEventListener('click', openVideo);
   });
 
-  // Cross button
+  // Close button
   closeBtn.addEventListener('click', closeVideo);
 
-  // Bahar black area pe click karne se bhi band
+  // Black area pe click se close
   modal.addEventListener('click', function (e) {
     if (e.target === modal) {
       closeVideo();
     }
   });
 
-  // ESC key se band
+  // ESC key se close
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') {
       closeVideo();
@@ -456,71 +472,71 @@ $(".side-toggle").on("click", function () {
     }
   }
 
-  // slider active 
-  if (document.querySelectorAll(".slider-active").length > 0) {
+    // slider active 
+    if (document.querySelectorAll(".slider-active").length > 0) {
 
-    let sliderActive1 = ".slider-active";
-    let sliderInit1 = new Swiper(sliderActive1, {
-      // Optional parameters
-      slidesPerView: 1,
-      slidesPerColumn: 1,
-      paginationClickable: true,
-      loop: true,
-      effect: "fade",
-      autoplay: {
-        delay: 5000,
-      },
+      let sliderActive1 = ".slider-active";
+      let sliderInit1 = new Swiper(sliderActive1, {
+        // Optional parameters
+        slidesPerView: 1,
+        slidesPerColumn: 1,
+        paginationClickable: true,
+        loop: true,
+        effect: "fade",
+        autoplay: {
+          delay: 5000,
+        },
 
-      // If we need pagination
-      pagination: {
-        el: ".slider-swiper-paginations",
-        // dynamicBullets: true,
-        clickable: true,
-      },
+        // If we need pagination
+        pagination: {
+          el: ".slider-swiper-paginations",
+          // dynamicBullets: true,
+          clickable: true,
+        },
 
-      // Navigation arrows
-      navigation: {
-        nextEl: ".slider-button-next",
-        prevEl: ".slider-button-prev",
-      },
+        // Navigation arrows
+        navigation: {
+          nextEl: ".slider-button-next",
+          prevEl: ".slider-button-prev",
+        },
 
-      a11y: false,
-    });
-
-    function animated_swiper(selector, init) {
-      let animated = function animated() {
-        $(selector + " [data-animation]").each(function () {
-          let anim = $(this).data("animation");
-          let delay = $(this).data("delay");
-          let duration = $(this).data("duration");
-
-          $(this)
-            .removeClass("anim" + anim)
-            .addClass(anim + " animated")
-            .css({
-              webkitAnimationDelay: delay,
-              animationDelay: delay,
-              webkitAnimationDuration: duration,
-              animationDuration: duration,
-            })
-            .one(
-              "webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend",
-              function () {
-                $(this).removeClass(anim + " animated");
-              }
-            );
-        });
-      };
-      animated();
-      // Make animated when slide change
-      init.on("slideChange", function () {
-        $(sliderActive1 + " [data-animation]").removeClass("animated");
+        a11y: false,
       });
-      init.on("slideChange", animated);
-    }
 
-    animated_swiper(sliderActive1, sliderInit1);
-  }
+      function animated_swiper(selector, init) {
+        let animated = function animated() {
+          $(selector + " [data-animation]").each(function () {
+            let anim = $(this).data("animation");
+            let delay = $(this).data("delay");
+            let duration = $(this).data("duration");
+
+            $(this)
+              .removeClass("anim" + anim)
+              .addClass(anim + " animated")
+              .css({
+                webkitAnimationDelay: delay,
+                animationDelay: delay,
+                webkitAnimationDuration: duration,
+                animationDuration: duration,
+              })
+              .one(
+                "webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend",
+                function () {
+                  $(this).removeClass(anim + " animated");
+                }
+              );
+          });
+        };
+        animated();
+        // Make animated when slide change
+        init.on("slideChange", function () {
+          $(sliderActive1 + " [data-animation]").removeClass("animated");
+        });
+        init.on("slideChange", animated);
+      }
+
+      animated_swiper(sliderActive1, sliderInit1);
+    }
 
 
 
@@ -607,7 +623,7 @@ $(".side-toggle").on("click", function () {
         prevEl: '.project-5-button-prev',
       },
       breakpoints: {
-        // when window width is >= px
+        
         576: {
           slidesPerView: 1,
         },
@@ -934,120 +950,116 @@ $(".side-toggle").on("click", function () {
       },
     });
   }
-
-  // Image Reveal Animation
-  if (document.querySelectorAll(".img-reveal-anim").length > 0) {
-    let img_reveal_anim = document.querySelectorAll(".img-reveal-anim");
-    img_reveal_anim.forEach((img_reveal) => {
-      let image = img_reveal.querySelector("img");
-      let tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: img_reveal,
-          start: "top 50%",
-        }
-      });
-
-      tl.set(img_reveal, { autoAlpha: 1 });
-      tl.from(img_reveal, 1.5, {
-        xPercent: -100,
-        ease: Power2.out
-      });
-      tl.from(image, 1.5, {
-        xPercent: 100,
-        scale: 1.3,
-        delay: -1.5,
-        ease: Power2.out
-      });
-    });
-  }
-
-
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  let revealContainers = document.querySelectorAll(".reveal");
-
-  revealContainers.forEach((container) => {
-    let image = container.querySelector("img");
+// Image Reveal Animation
+if (document.querySelectorAll(".img-reveal-anim").length > 0) {
+  let img_reveal_anim = document.querySelectorAll(".img-reveal-anim");
+  img_reveal_anim.forEach((img_reveal) => {
+    let image = img_reveal.querySelector("img");
     let tl = gsap.timeline({
       scrollTrigger: {
-        trigger: container,
-        toggleActions: "restart none none reset"
+        trigger: img_reveal,
+        start: "top 50%",
       }
     });
 
-    tl.set(container, { autoAlpha: 1 });
-    tl.from(container, 1.5, {
+    tl.set(img_reveal, { autoAlpha: 1 });
+    tl.from(img_reveal, 0.8, {          // ← 1.5 se 0.8
       xPercent: -100,
       ease: Power2.out
     });
-    tl.from(image, 1.5, {
+    tl.from(image, 0.8, {               // ← 1.5 se 0.8
       xPercent: 100,
       scale: 1.3,
-      delay: -1.5,
+      delay: -0.8,                      // ← delay bhi match kiya
       ease: Power2.out
     });
   });
-
-  const images = document.querySelectorAll(".img-reveal");
-
-  const removeOverlay = overlay => {
-    let tl = gsap.timeline();
-
-    tl.to(overlay, {
-      duration: 1.4,
-      ease: "Power2.easeInOut",
-      width: "0%"
-    });
-
-    return tl;
-  };
-
-  const scaleInImage = image => {
-    let tl = gsap.timeline();
-
-    tl.from(image, {
-      duration: 1.4,
-      scale: 1.4,
-      ease: "Power2.easeInOut"
-    });
-
-    return tl;
-  };
-
-  images.forEach(image => {
-
-    gsap.set(image, {
-      visibility: "visible"
-    });
-
-    const overlay = image.querySelector('.img-overlay');
-    const img = image.querySelector("img");
-
-    const masterTL = gsap.timeline({ paused: true });
-    masterTL
-      .add(removeOverlay(overlay))
-      .add(scaleInImage(img), "-=1.4");
+}
 
 
-    let options = {
-      threshold: 0
+gsap.registerPlugin(ScrollTrigger);
+
+let revealContainers = document.querySelectorAll(".reveal");
+
+revealContainers.forEach((container) => {
+  let image = container.querySelector("img");
+  let tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: container,
+      toggleActions: "restart none none reset"
     }
-
-    const io = new IntersectionObserver((entries, options) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          masterTL.play();
-        } else {
-          masterTL.progress(0).pause()
-        }
-      });
-    }, options);
-
-    io.observe(image);
   });
 
+  tl.set(container, { autoAlpha: 1 });
+  tl.from(container, 0.8, {             // ← 1.5 se 0.8
+    xPercent: -100,
+    ease: Power2.out
+  });
+  tl.from(image, 0.8, {                 // ← 1.5 se 0.8
+    xPercent: 100,
+    scale: 1.3,
+    delay: -0.8,
+    ease: Power2.out
+  });
+});
 
+
+const images = document.querySelectorAll(".img-reveal");
+
+const removeOverlay = overlay => {
+  let tl = gsap.timeline();
+
+  tl.to(overlay, {
+    duration: 0.8,                      // ← 1.4 se 0.8
+    ease: "Power2.easeInOut",
+    width: "0%"
+  });
+
+  return tl;
+};
+
+const scaleInImage = image => {
+  let tl = gsap.timeline();
+
+  tl.from(image, {
+    duration: 0.8,                      // ← 1.4 se 0.8
+    scale: 1.4,
+    ease: "Power2.easeInOut"
+  });
+
+  return tl;
+};
+
+images.forEach(image => {
+
+  gsap.set(image, {
+    visibility: "visible"
+  });
+
+  const overlay = image.querySelector('.img-overlay');
+  const img = image.querySelector("img");
+
+  const masterTL = gsap.timeline({ paused: true });
+  masterTL
+    .add(removeOverlay(overlay))
+    .add(scaleInImage(img), "-=0.8");   // ← 1.4 se 0.8
+
+  let options = {
+    threshold: 0
+  }
+
+  const io = new IntersectionObserver((entries, options) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        masterTL.play();
+      } else {
+        masterTL.progress(0).pause()
+      }
+    });
+  }, options);
+
+  io.observe(image);
+});
 
 
   // Testimonial Carousel
