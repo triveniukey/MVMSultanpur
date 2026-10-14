@@ -15778,8 +15778,8 @@ section {
 }
 @media only screen and (max-width: 1919px) {
   .breadcrumb-content {
-    padding-top: 133px;
-    padding-bottom: 151px;
+    padding-top: 110px;
+    padding-bottom: 131px;
     padding-left: 80px;
   }
 }
@@ -15961,6 +15961,7 @@ section {
 @media (max-width: 575px) {
   .contact-wrapper {
     grid-template-columns: repeat(1, 1fr);
+    margin-top: 20px;
   }
 }
 
@@ -16104,6 +16105,7 @@ section {
   display: flex;
   align-items: center;
   gap: 10px;
+  border: 1px solid;
   justify-content: space-between;
   position: relative;
 }
@@ -20737,8 +20739,8 @@ section {
 .project-item-3 .project-btn a {
   background-color: var(--white);
   color: var(--theme);
-  height: 80px;
-  width: 80px;
+  height: 40px;
+  width: 40px;
   display: flex;
   align-items: center;
   border-radius: 50%;
@@ -20774,6 +20776,7 @@ section {
     overflow: hidden;
     position: relative;
     width: 100%;
+    border: 3px solid;
     height: 180px;
 }
 
@@ -25572,7 +25575,7 @@ section {
 .tk-main-banner {
       position: relative;
       width: 100%;
-      padding: 22px 0px;
+      padding: 14px 0px;
       background: linear-gradient(145deg, rgb(53 19 111), rgb(41 20 60));
       border-radius: 24px;
       border: 1px solid rgba(255, 255, 255, 0.15);
@@ -25686,13 +25689,19 @@ section {
     }
 
     .tk-school-content a {
-      color: #7c3aed;
+      color: darkmagenta;
       text-decoration: none;
       font-weight: 500;
       border-bottom: 1px dashed #c4b5fd;
       transition: all 0.2s ease;
+   
     }
-
+    .yaa a{
+      color: white;
+         padding: 5px 10px;
+      background-color: blue;
+      border-radius: 50px;
+    }
     .tk-school-content a:hover {
       color: #6b21a8;
       border-bottom-color: #7c3aed;
@@ -25712,7 +25721,7 @@ section {
     /* Responsive */
     @media (max-width: 700px) {
       .tk-main-banner {
-        padding: 28px 24px;
+        padding: 2px 24px;
       }
       .tk-heading-title {
         font-size: 1.55rem;
@@ -26720,405 +26729,21 @@ table.dataTable tbody tr:hover {
     margin-top: 5px;
 }
 
-
-.school-video-section {
-    width: 100%;
-    padding: 60px 0;
-    background: #ffffff;
+.school-video-title{
+  background-color: #4B31DF;
+  color: white;
+  padding: 5px;
 }
-
-.school-video-wrapper {
-    width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
-
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
+.school-video-card{
+  border: 2px solid;
 }
-
-
-/* =================================
-   VIDEO CARD
-================================= */
-
-.school-video-card {
-    background: #4d87d3;
-    border: 1px solid #4d87d3;
-    padding: 4px;
-
-    cursor: pointer;
-    overflow: hidden;
-
-    transition: all 0.3s ease;
+.school-video-card img{
+  height: 210px;
+  border-radius: none;
 }
-
-.school-video-card:hover {
-    transform: translateY(-5px);
-
-    box-shadow:
-        0 8px 20px rgba(0, 0, 0, 0.18);
+.school-video-section .video-play-btn{
+  background-color: black;
 }
-
-
-/* =================================
-   IMAGE
-================================= */
-
-.school-video-img {
-    width: 100%;
-    height: 220px;
-
-    position: relative;
-    overflow: hidden;
-
-    background: #000;
-}
-
-.school-video-img img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-    display: block;
-
-    transition: transform 0.4s ease;
-}
-
-
-/* Image zoom */
-
-.school-video-card:hover
-.school-video-img img {
-    transform: scale(1.05);
-}
-
-
-/* =================================
-   DARK HOVER OVERLAY
-================================= */
-
-.school-video-overlay {
-    position: absolute;
-
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-
-    background: rgba(0, 0, 0, 0.45);
-
-    opacity: 0;
-
-    transition: all 0.3s ease;
-}
-
-.school-video-card:hover
-.school-video-overlay {
-    opacity: 1;
-}
-
-
-/* =================================
-   PLAY BUTTON
-================================= */
-
-.school-video-play {
-    position: absolute;
-
-    top: 50%;
-    left: 50%;
-
-    width: 55px;
-    height: 55px;
-
-    transform:
-        translate(-50%, -50%)
-        scale(0.7);
-
-    border-radius: 50%;
-
-    background: #ffffff;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    color: #5A0B22;
-
-    font-size: 19px;
-
-    z-index: 3;
-
-    opacity: 0;
-
-    transition: all 0.3s ease;
-}
-
-.school-video-card:hover
-.school-video-play {
-
-    opacity: 1;
-
-    transform:
-        translate(-50%, -50%)
-        scale(1);
-}
-
-
-/* =================================
-   TITLE
-================================= */
-
-.school-video-title {
-
-    min-height: 48px;
-
-    display: flex;
-    align-items: center;
-
-    padding: 7px 6px;
-
-    background: #4d87d3;
-
-    color: #ffffff;
-
-    font-family: Georgia, serif;
-
-    font-size: 13px;
-
-    font-weight: 600;
-
-    line-height: 17px;
-
-    text-align: left;
-}
-
-
-/* =================================
-   BODY LOCK WHEN MODAL OPEN
-================================= */
-
-body.video-modal-open {
-    overflow: hidden !important;
-    height: 100vh;
-
-    /* Prevent touch/scroll movement */
-    touch-action: none;
-}
-
-
-/* =================================
-   VIDEO MODAL
-================================= */
-
-.school-video-modal {
-
-    position: fixed;
-
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 100%;
-
-    background: rgba(0, 0, 0, 0.82);
-
-    display: none;
-
-    align-items: center;
-    justify-content: center;
-
-    z-index: 999999;
-
-    padding: 20px;
-
-    overflow: hidden;
-
-    overscroll-behavior: none;
-}
-
-
-/* Modal active */
-
-.school-video-modal.active {
-    display: flex;
-}
-
-
-/* =================================
-   MODAL BOX
-================================= */
-
-.school-video-modal-box {
-
-    position: relative;
-
-    width: 90%;
-    max-width: 850px;
-
-    background: #000;
-
-    padding: 5px;
-
-    max-height: 90vh;
-}
-
-
-/* =================================
-   IFRAME
-================================= */
-
-.school-video-modal-box iframe {
-
-    width: 100%;
-
-    height: 480px;
-
-    border: 0;
-
-    display: block;
-}
-
-
-/* =================================
-   CLOSE BUTTON
-================================= */
-
-.school-video-close {
-
-    position: absolute;
-
-    top: -18px;
-    right: -18px;
-
-    width: 38px;
-    height: 38px;
-
-    border: none;
-
-    border-radius: 50%;
-
-    background: #ffffff;
-
-    color: #5A0B22;
-
-    font-size: 27px;
-
-    line-height: 38px;
-
-    text-align: center;
-
-    cursor: pointer;
-
-    z-index: 10;
-
-    padding: 0;
-
-    transition: all 0.3s ease;
-}
-
-
-.school-video-close:hover {
-
-    background: #5A0B22;
-
-    color: #ffffff;
-
-    transform: rotate(90deg);
-}
-
-
-/* =================================
-   TABLET
-================================= */
-
-@media only screen and (max-width: 991px) {
-
-    .school-video-wrapper {
-
-        grid-template-columns:
-            repeat(2, 1fr);
-
-        padding: 0 20px;
-    }
-
-    .school-video-img {
-
-        height: 210px;
-    }
-
-    .school-video-modal-box {
-
-        width: 90%;
-    }
-
-    .school-video-modal-box iframe {
-
-        height: 420px;
-    }
-
-}
-
-
-/* =================================
-   MOBILE
-================================= */
-
-@media only screen and (max-width: 767px) {
-
-    .school-video-section {
-
-        padding: 40px 0;
-    }
-
-    .school-video-wrapper {
-
-        grid-template-columns: 1fr;
-
-        padding: 0 15px;
-
-        gap: 15px;
-    }
-
-    .school-video-img {
-
-        height: 230px;
-    }
-
-    .school-video-modal {
-
-        padding: 15px;
-    }
-
-    .school-video-modal-box {
-
-        width: 100%;
-
-        max-width: 100%;
-    }
-
-    .school-video-modal-box iframe {
-
-        height: 250px;
-    }
-
-    .school-video-close {
-
-        top: -15px;
-        right: -8px;
-
-        width: 34px;
-        height: 34px;
-
-        font-size: 24px;
-
-        line-height: 34px;
-    }
-
-}
-
-
 /* ================================
    SOCIAL MEDIA SECTION
 ================================ */
@@ -27744,4 +27369,87 @@ body.video-modal-open {
   .hero-slide {
     height: 300px;
   }
+}
+
+
+.project-btn a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.9);
+    color: #333;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.project-btn a:hover {
+    background: #fff;
+    transform: scale(1.1);
+}
+
+.info-btn {
+    margin-top: 2px;
+}
+
+/* Modal Styles */
+.info-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    backdrop-filter: blur(4px);
+    animation: fadeIn 0.3s ease;
+}
+
+.info-modal-content {
+    background: #fff;
+    margin: 15% auto;
+    padding: 25px 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    text-align: center;
+    animation: slideDown 0.35s ease;
+}
+
+.info-close {
+    position: absolute;
+    top: 8px;
+    right: 15px;
+    font-size: 26px;
+    font-weight: bold;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.info-close:hover {
+    color: #e74c3c;
+}
+
+#infoModalText {
+    margin: 10px 0 0 0;
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-25px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }

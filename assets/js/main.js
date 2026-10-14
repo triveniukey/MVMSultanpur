@@ -35,6 +35,29 @@
 
 
 ****************************************************/
+
+
+
+function openInfoModal(text) {
+    document.getElementById('infoModalText').innerText = text;
+    document.getElementById('infoModal').style.display = 'block';
+}
+
+function closeInfoModal() {
+    document.getElementById('infoModal').style.display = 'none';
+}
+
+// Modal ke bahar click karne pe band ho jaye
+window.onclick = function(event) {
+    const modal = document.getElementById('infoModal');
+    if (event.target === modal) {
+        closeInfoModal();
+    }
+}
+
+
+
+
 window.addEventListener('resize', function() {
   document.body.style.height = 'auto';
 });
@@ -84,7 +107,9 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // Close button
+  if (closeBtn) {
   closeBtn.addEventListener('click', closeVideo);
+}
 
   // Black area pe click se close
   modal.addEventListener('click', function (e) {
@@ -102,46 +127,54 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
-let miniCurrentSlide = 0;
-const miniSlides = document.querySelectorAll(".mini-slide");
-const miniDots = document.querySelectorAll(".mini-dot");
+// ====================== MINI SLIDER (Final Fix) ======================
+document.addEventListener('DOMContentLoaded', function () {
+  const miniSlides = document.querySelectorAll(".mini-slide");
+  const miniDots = document.querySelectorAll(".mini-dot");
 
-function showMiniSlide(index) {
+  // Agar slides nahi hain to yahan se return
+  if (miniSlides.length === 0) return;
 
-  miniSlides.forEach(slide => {
-    slide.classList.remove("active");
-  });
+  let miniCurrentSlide = 0;
 
-  miniDots.forEach(dot => {
-    dot.classList.remove("active");
-  });
+  // Global functions bana diya (taaki HTML ke onclick se kaam kare)
+  window.showMiniSlide = function (index) {
+    miniSlides.forEach(slide => slide.classList.remove("active"));
+    miniDots.forEach(dot => dot.classList.remove("active"));
 
-  miniCurrentSlide = index;
+    if (!miniSlides[index]) return;
 
-  miniSlides[miniCurrentSlide].classList.add("active");
-  miniDots[miniCurrentSlide].classList.add("active");
-}
+    miniCurrentSlide = index;
+    miniSlides[miniCurrentSlide].classList.add("active");
 
-function changeMiniSlide(direction) {
+    if (miniDots[miniCurrentSlide]) {
+      miniDots[miniCurrentSlide].classList.add("active");
+    }
+  };
 
-  miniCurrentSlide += direction;
+  window.changeMiniSlide = function (direction) {
+    miniCurrentSlide += direction;
 
-  if (miniCurrentSlide >= miniSlides.length) {
-    miniCurrentSlide = 0;
-  }
+    if (miniCurrentSlide >= miniSlides.length) {
+      miniCurrentSlide = 0;
+    }
+    if (miniCurrentSlide < 0) {
+      miniCurrentSlide = miniSlides.length - 1;
+    }
 
-  if (miniCurrentSlide < 0) {
-    miniCurrentSlide = miniSlides.length - 1;
-  }
+    window.showMiniSlide(miniCurrentSlide);
+  };
 
-  showMiniSlide(miniCurrentSlide);
-}
+  // Pehli slide dikhao
+  window.showMiniSlide(0);
+
+  // Auto change
+  setInterval(() => {
+    window.changeMiniSlide(1);
+  }, 1500);
+});
 
 
-/* AUTO SLIDER */
-setInterval(() => {
-  changeMiniSlide(1);
-}, 3500);
 (function ($) {
   "use strict";
 
@@ -306,7 +339,7 @@ setInterval(() => {
       "main", {
       y: 0,
       opacity: 0,
-      delay: 0.3,
+      delay: 0.2,
     },
       "-=1.5"
     );
@@ -379,12 +412,6 @@ $(".side-toggle").on("click", function () {
   $("body").addClass("side-info-open");
 });
 
-  // $(window).scroll(function () {
-  //   if ($("body").scrollTop() > 0 || $("html").scrollTop() > 0) {
-  //     $(".side-info").removeClass("info-open");
-  //     $(".offcanvas-overlay").removeClass("overlay-open");
-  //   }
-  // });
 
   // meanmenu activation 
   $('.main-menu').meanmenu({
@@ -440,37 +467,7 @@ $(".side-toggle").on("click", function () {
       });
     });
   }
-  // GSAP title animation
-  if (document.querySelectorAll(".rr_title_anim").length > 0) {
-    if ($('.rr_title_anim').length > 0) {
-      let splitTitleLines = gsap.utils.toArray(".rr_title_anim");
-      splitTitleLines.forEach(splitTextLine => {
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: splitTextLine,
-            start: 'top 90%',
-            end: 'bottom 60%',
-            scrub: false,
-            markers: false,
-            toggleActions: 'play none none reverse'
-          }
-        });
-
-        const itemSplitted = new SplitText(splitTextLine, { type: "words, lines" });
-        gsap.set(splitTextLine, { perspective: 400 });
-        itemSplitted.split({ type: "lines" })
-        tl.from(itemSplitted.lines, {
-          duration: 1,
-          delay: 0.3,
-          opacity: 0,
-          rotationX: -80,
-          force3D: true,
-          transformOrigin: "top center -50",
-          stagger: 0.2
-        });
-      });
-    }
-  }
+  
 
     // slider active 
     if (document.querySelectorAll(".slider-active").length > 0) {
@@ -570,39 +567,6 @@ $(".side-toggle").on("click", function () {
   }
 
 
-  // project-2 active
-  if (document.querySelectorAll(".project-2-active").length > 0) {
-    var project_2_active = new Swiper(".project-2-active", {
-      loop: true,
-      slidesPerView: 1,
-      spaceBetween: 24,
-      speed: 2000,
-      watchSlidesProgress: true,
-      breakpoints: {
-        // when window width is >= px
-        576: {
-          slidesPerView: 1,
-        },
-        768: {
-          slidesPerView: 1,
-        },
-        992: {
-          slidesPerView: 2,
-        },
-        1201: {
-          slidesPerView: 3,
-        },
-        1367: {
-          slidesPerView: 3,
-        },
-      },
-      navigation: {
-        nextEl: '.project-2-button-next',
-        prevEl: '.project-2-button-prev',
-      },
-    });
-  }
-
 
   // project-5 active
   if (document.querySelectorAll(".project-5-active").length > 0) {
@@ -645,53 +609,6 @@ $(".side-toggle").on("click", function () {
     });
   }
 
-
-
-  // testimonial active
-  if (document.querySelectorAll(".testimonial-active").length > 0) {
-    var testimonial_active = new Swiper(".testimonial-active", {
-      loop: true,
-      slidesPerView: 1,
-      spaceBetween: 30,
-      speed: 2000,
-      watchSlidesProgress: true,
-      centeredSlides: true,
-      pagination: {
-        el: ".testimonial-pagination",
-        type: "progressbar",
-        clickable: true,
-      },
-      breakpoints: {
-        // when window width is >= px
-        576: {
-          slidesPerView: 1,
-        },
-        768: {
-          slidesPerView: 1,
-        },
-        992: {
-          slidesPerView: 2,
-          spaceBetween: 60,
-
-        },
-        1201: {
-          slidesPerView: 2.3,
-          spaceBetween: 100,
-        },
-        1367: {
-          slidesPerView: 2.3,
-          spaceBetween: 100,
-
-        },
-        1600: {
-          slidesPerView: 3,
-          spaceBetween: 110,
-
-        },
-      }
-    });
-  }
-
   // testimonial-2 active
   if (document.querySelectorAll(".testimonial-2-active").length > 0) {
     var testimonial_2_active = new Swiper(".testimonial-2-active", {
@@ -722,48 +639,6 @@ $(".side-toggle").on("click", function () {
           slidesPerView: 2,
         },
       }
-    });
-  }
-
-  // testimonial-3 active
-  if (document.querySelectorAll(".testimonial-3-wrapper").length > 0) {
-    var test_3_thumb = new Swiper(".testimonial-3-thumb", {
-      spaceBetween: 15,
-      slidesPerView: 3,
-      freeMode: true,
-      watchSlidesProgress: true,
-      breakpoints: {
-        // when window width is >= px
-        576: {
-          slidesPerView: 5,
-        },
-      },
-    });
-    var swiper2 = new Swiper(".testimonial-3-active", {
-      spaceBetween: 10,
-      thumbs: {
-        swiper: test_3_thumb,
-      },
-      effect: 'fade',
-      fadeEffect: {
-        crossFade: true,
-      },
-    });
-  }
-
-
-  // testimonial-4 active
-  if (document.querySelectorAll(".testimonial-4-active").length > 0) {
-    var testimonial_4_active = new Swiper(".testimonial-4-active", {
-      loop: true,
-      slidesPerView: 1,
-      spaceBetween: 24,
-      speed: 2000,
-      watchSlidesProgress: true,
-      navigation: {
-        nextEl: '.testimonial-4-button-next',
-        prevEl: '.testimonial-4-button-prev',
-      },
     });
   }
 
@@ -817,20 +692,6 @@ $(".side-toggle").on("click", function () {
     });
   }
 
-  // text-slider activation
-  if ('.text-slider-active') {
-    var text_slider_active = new Swiper(".text-slider-active", {
-      slidesPerView: 'auto',
-      loop: true,
-      autoplay: true,
-      spaceBetween: 38,
-      speed: 10000,
-      allowTouchMove: false,
-      autoplay: {
-        delay: 1,
-      },
-    });
-  }
 
   // text-slider-2 activation
   if ('.text-slider-2-active') {
@@ -914,42 +775,6 @@ $(".side-toggle").on("click", function () {
   // WOW active
   new WOW().init();
 
-
-  // team-3 active
-  if (document.querySelectorAll(".team-3-active").length > 0) {
-    var team_3_active = new Swiper(".team-3-active", {
-      loop: true,
-      slidesPerView: 1,
-      spaceBetween: 44,
-      speed: 2000,
-      watchSlidesProgress: true,
-      centeredSlides: true,
-      breakpoints: {
-        // when window width is >= px
-        576: {
-          slidesPerView: 1.5,
-        },
-        768: {
-          slidesPerView: 2,
-        },
-        992: {
-          slidesPerView: 3,
-
-        },
-        1201: {
-          slidesPerView: 3,
-        },
-        1367: {
-          slidesPerView: 3,
-
-        },
-      },
-      navigation: {
-        nextEl: '.team-3-button-next',
-        prevEl: '.team-3-button-prev',
-      },
-    });
-  }
 // Image Reveal Animation
 if (document.querySelectorAll(".img-reveal-anim").length > 0) {
   let img_reveal_anim = document.querySelectorAll(".img-reveal-anim");
