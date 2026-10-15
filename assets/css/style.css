@@ -7256,6 +7256,7 @@ section {
   -webkit-text-stroke: 1px;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  color: white;
   z-index: -1;
 }
 @media only screen and (max-width: 1919px) {
@@ -27452,4 +27453,74 @@ table.dataTable tbody tr:hover {
 @keyframes slideDown {
     from { transform: translateY(-25px); opacity: 0; }
     to { transform: translateY(0); opacity: 1; }
+}
+.odometer.odometer-auto-theme .odometer-ribbon-inner,
+.odometer.odometer-theme-default .odometer-ribbon-inner {
+    transition-duration: 6s !important;
+}
+
+.header-area .header-logo img {
+  width: 280px;
+}
+
+@media only screen and (max-width: 1399px) {
+  .header-area .header-logo img {
+    width: 240px;
+  }
+}
+
+@media only screen and (max-width: 1199px) {
+  .header-area .header-logo img {
+    width: 200px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .header-area .header-logo img {
+    width: 180px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .header-area .header-logo img {
+    width: 160px;
+  }
+}
+
+.header-area .header-main-bg {
+  position: absolute;
+  height: 100%;
+  width: max-content;
+  top: 0;
+  right: calc(100% - 320px);
+  z-index: -1;
+}
+
+@media only screen and (max-width: 1399px) {
+  .header-area .header-main-bg {
+    right: calc(100% - 280px);
+  }
+}
+
+@media only screen and (max-width: 1199px) {
+  .header-area .header-main-bg {
+    right: calc(100% - 240px);
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .header-area .header-main-bg {
+    right: calc(100% - 210px);
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .header-area .header-main-bg {
+    right: calc(100% - 180px);
+  }
+}
+
+.header-area .header-nav {
+  position: relative;
+  z-index: 5;
 }

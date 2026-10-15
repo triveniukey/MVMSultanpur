@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
-<!-- Mirrored from html.rrdevs.net/synvo/home-1.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 18 Sep 2026 10:15:51 GMT -->
-<head>
+  <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,8 +45,7 @@
         <span>M</span>
         <span>V</span>
         <span>M</span>
-        <!-- <span>v</span>
-        <span>o</span> -->
+
       </div>
     </div>
   </div>
@@ -726,101 +722,6 @@
   <script src="assets/js/wow.min.js"></script>
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-
-  const modal = document.getElementById('videoModal');
-  const iframe = document.getElementById('youtubeVideo');
-  const closeBtn = document.getElementById('closeVideo');
-
-  // Apna YouTube video
-  const videoURL = "https://www.youtube.com/embed/sWl0Xb2zyag?autoplay=1&rel=0&modestbranding=1";
-
-  // Video Open karne ka function
-  function openVideo(e) {
-    e.preventDefault();
-    e.stopPropagation();
-
-    iframe.src = videoURL;
-    modal.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-  }
-
-  // Video Close karne ka function
-  function closeVideo() {
-    modal.style.display = 'none';
-    iframe.src = '';               // video band + sound band
-    document.body.style.overflow = '';
-  }
-
-  // Play icon + image dono pe click
-  document.querySelectorAll('.video-play-btn, .video-trigger').forEach(function (btn) {
-    btn.addEventListener('click', openVideo);
-  });
-
-  // Cross button
-  closeBtn.addEventListener('click', closeVideo);
-
-  // Bahar black area pe click karne se bhi band
-  modal.addEventListener('click', function (e) {
-    if (e.target === modal) {
-      closeVideo();
-    }
-  });
-
-  // ESC key se band
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') {
-      closeVideo();
-    }
-  });
-
-});
-
-let miniCurrentSlide = 0;
-const miniSlides = document.querySelectorAll(".mini-slide");
-const miniDots = document.querySelectorAll(".mini-dot");
-
-function showMiniSlide(index) {
-
-  miniSlides.forEach(slide => {
-    slide.classList.remove("active");
-  });
-
-  miniDots.forEach(dot => {
-    dot.classList.remove("active");
-  });
-
-  miniCurrentSlide = index;
-
-  miniSlides[miniCurrentSlide].classList.add("active");
-  miniDots[miniCurrentSlide].classList.add("active");
-}
-
-function changeMiniSlide(direction) {
-
-  miniCurrentSlide += direction;
-
-  if (miniCurrentSlide >= miniSlides.length) {
-    miniCurrentSlide = 0;
-  }
-
-  if (miniCurrentSlide < 0) {
-    miniCurrentSlide = miniSlides.length - 1;
-  }
-
-  showMiniSlide(miniCurrentSlide);
-}
 
 
-/* AUTO SLIDER */
-setInterval(() => {
-  changeMiniSlide(1);
-}, 3500);
-</script>
-
-</body>
-
-
-<!-- Mirrored from html.rrdevs.net/synvo/home-1.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 18 Sep 2026 10:16:24 GMT -->
-</html>
+</body></html>
